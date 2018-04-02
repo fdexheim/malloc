@@ -6,7 +6,7 @@
 /*   By: fdexheim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/16 13:19:20 by fdexheim          #+#    #+#             */
-/*   Updated: 2018/03/19 09:06:33 by fdexheim         ###   ########.fr       */
+/*   Updated: 2018/04/02 12:29:04 by fdexheim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,9 @@ int					main()
 	}
 
 	show_alloc_mem_ex();
-	putstr_ghetto(" -- Malloc ended -- \n");
+	putstr_ghetto(" --(Malloc ended)-- \n");
+	pages_status();
+	display_histo();
 	getchar();
 
 	for (int f = 12; f < 22; f++)
@@ -81,6 +83,8 @@ int					main()
 		pthread_join(allocator2, (void*)&strs2[f]);
 	}
 	show_alloc_mem_ex();
-	putstr_ghetto(" -- Free ended -- \n");
+	pages_status();
+	display_histo();
+	putstr_ghetto(" --(Free ended)-- \n");
 	return 0;
 }

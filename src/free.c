@@ -6,7 +6,7 @@
 /*   By: fdexheim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 13:34:20 by fdexheim          #+#    #+#             */
-/*   Updated: 2018/03/30 14:58:19 by fdexheim         ###   ########.fr       */
+/*   Updated: 2018/04/02 12:23:29 by fdexheim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void			check_erase_large_page(void)
 	{
 		tmp = g_mem.large_pages;
 		g_mem.large_pages = tmp->next;
-		munmap(tmp, tmp->page_size);
+		if (munmap(tmp, tmp->page_size) == -1)
+			write(1, "MUNMAP ERROR!\n", 14);
 	}
 	tmp = g_mem.large_pages;
 	while (tmp)
@@ -33,7 +34,8 @@ void			check_erase_large_page(void)
 		{
 			tofree = tmp->next;
 			tmp->next = tmp->next->next;
-			munmap(tofree, tofree->page_size);
+			if (munmap(tofree, tofree->page_size) == -1)
+				write(1, "MUNMAP ERROR!\n", 14);
 		}
 		tmp = tmp->next;
 	}
@@ -44,14 +46,13 @@ void			check_erase_small_page(void)
 	t_page		*tmp;
 	t_page		*tofree;
 
-	if (get_page_list_size(g_mem.small_pages) <= 1)
-		return ;
 	while (g_mem.small_pages != NULL
 			&& check_full_free_page(g_mem.small_pages) == true)
 	{
 		tmp = g_mem.small_pages;
 		g_mem.small_pages = tmp->next;
-		munmap(tmp, tmp->page_size);
+		if (munmap(tmp, tmp->page_size) == -1)
+			write(1, "MUNMAP ERROR!\n", 14);
 	}
 	tmp = g_mem.small_pages;
 	while (tmp != NULL)
@@ -60,7 +61,8 @@ void			check_erase_small_page(void)
 		{
 			tofree = tmp->next;
 			tmp->next = tmp->next->next;
-			munmap(tofree, tofree->page_size);
+			if (munmap(tofree, tofree->page_size) == -1)
+				write(1, "MUNMAP ERROR!\n", 14);
 		}
 		tmp = tmp->next;
 	}
@@ -71,14 +73,13 @@ void			check_erase_tiny_page(void)
 	t_page		*tmp;
 	t_page		*tofree;
 
-	if (get_page_list_size(g_mem.small_pages) <= 1)
-		return ;
 	while (g_mem.tiny_pages != NULL
 			&& check_full_free_page(g_mem.tiny_pages) == true)
 	{
 		tmp = g_mem.tiny_pages;
 		g_mem.tiny_pages = tmp->next;
-		munmap(tmp, tmp->page_size);
+		if (munmap(tmp, tmp->page_size) == -1)
+			write(1, "MUNMAP ERROR!\n", 14);
 	}
 	tmp = g_mem.tiny_pages;
 	while (tmp != NULL)
@@ -87,7 +88,8 @@ void			check_erase_tiny_page(void)
 		{
 			tofree = tmp->next;
 			tmp->next = tmp->next->next;
-			munmap(tofree, tofree->page_size);
+			if (munmap(tofree, tofree->page_size) == -1)
+				write(1, "MUNMAP ERROR!\n", 14);
 		}
 		tmp = tmp->next;
 	}

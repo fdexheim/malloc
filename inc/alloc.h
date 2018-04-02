@@ -6,7 +6,7 @@
 /*   By: fdexheim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 08:42:28 by fdexheim          #+#    #+#             */
-/*   Updated: 2018/03/30 14:39:44 by fdexheim         ###   ########.fr       */
+/*   Updated: 2018/04/02 12:15:50 by fdexheim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # define BLOC_OVERHEAD 24
 # define PAGE_OVERHEAD 32
 
-# define TINY_MAX_SIZE 256
+# define TINY_MAX_SIZE 64
 # define NB_TINY_BLOCS 256
 
 # define SMALL_MAX_SIZE 1024
