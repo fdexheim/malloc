@@ -6,7 +6,7 @@
 /*   By: fdexheim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/03/29 10:11:33 by fdexheim          #+#    #+#             */
-/*   Updated: 2018/03/30 12:50:38 by fdexheim         ###   ########.fr       */
+/*   Updated: 2018/04/04 08:31:32 by fdexheim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ size_t				count_allocated_blocs_in_page(t_page *pg)
 	}
 	return (ret);
 }
-
 
 void				tiny_pages_status(void)
 {

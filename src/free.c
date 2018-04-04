@@ -6,7 +6,7 @@
 /*   By: fdexheim <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/26 13:34:20 by fdexheim          #+#    #+#             */
-/*   Updated: 2018/04/02 12:23:29 by fdexheim         ###   ########.fr       */
+/*   Updated: 2018/04/04 08:38:21 by fdexheim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void			free(void *ptr)
 	switch_mutex_lock(true);
 	if (ptr == NULL || full_search_allocated_bloc_from_data_ptr(ptr) == NULL)
 	{
+		add_histo(FREE_CODE, 0);
 		add_histo(ERROR_CODE, 0);
 		switch_mutex_lock(false);
 		return ;
